@@ -1,0 +1,17 @@
+	<div class="row" ng-controller="consoCtrl" style="margin-top:10px;">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<span id="rangeLabel">Affichage des {{range}} derniers jours</span>
+				<input type="range" ng-model="range" max="365" min="1" step="1">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<column-chart conso="conso" range="{{range}}"></column-chart>
+			</div>
+			<div class="col-md-12">
+				<column-chart conso="consoDelta" range="{{range}}"></column-chart>
+			</div>
+		</div>
+	</div>

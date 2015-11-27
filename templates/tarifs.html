@@ -1,0 +1,43 @@
+<div class="row" style="padding-top: 8px;">
+	<div class="col-xs-3">Période courante : </div><span class="col-xs-3" ng-bind="periode"></span>
+</div>
+
+<div class="row">
+	<div class="col-md-6 col-xs-11">
+		<table id="tableInfos" class="table">
+			<thead>
+				<tr>
+					<th colspan="3">Valeurs des tarifs</th>
+				</tr>
+				<tr>
+					<th>Abonnement</th>
+					<th>Heures pleines</th>
+					<th>Heures creuses</th>
+				</tr>
+			</thead>
+			<tr>
+				<td ng-bind="tarifs.abonnement"></td>
+				<td ng-bind="tarifs.HP"></td>
+				<td ng-bind="tarifs.HC"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-6">
+			<span id="rangeLabel">Affichage des {{range}} derniers jours</span>
+			<input type="range" ng-model="range" max="365" min="1" step="1">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<column-chart conso="consoDeltaPrix" range="{{range}}"></column-chart>
+		</div>
+		<div class="col-md-6">
+			<column-chart conso="consoDeltaPrixMois" range="1"></column-chart>
+		</div>
+	</div>
+
+</div>

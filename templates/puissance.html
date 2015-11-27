@@ -1,0 +1,26 @@
+<div id="puissance" ng-controller="puissanceCtrl">
+	<div id="buttons" class="col-md-12">
+		<div class="col-md-12">
+			<span class="col-lg-1 col-md-1 col-xs-12 col-md-offset-1 col-lg-offset-2" style="padding-top : 6px;">Date debut</span>
+			<div class="col-lg-1 col-md-1 col-xs-12 datepicker">
+				<input class="form-control" type="date" uib-datepicker-popup ng-model="dtDebut" is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-1 timepicker">
+				<uib-timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" show-spinners="false"></uib-timepicker>
+			</div>
+			<span class="col-lg-1 col-md-1 col-xs-12 col-md-offset-8" style="padding-top : 6px;">Date fin</span>
+			<div class="col-lg-1 col-md-1 col-xs-12 datepicker">
+				<input class="form-control" type="date" uib-datepicker-popup ng-model="dtFin" is-open="status.opened" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-1 timepicker">
+				<uib-timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" show-spinners="false"></uib-timepicker>
+			</div>
+			<button class="col-lg-1 col-md-1 col-xs-12 btn btn-success glyphicon glyphicon-refresh" id="change-btn" type="button" ng-click="refreshData()"></button>
+		</div>
+	</div>
+		
+	<div id="puissanceCharts">
+		<div id="chart_div"></div>
+		<div id="filter_div"></div>
+	</div>
+</div>
