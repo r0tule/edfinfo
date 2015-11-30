@@ -1,28 +1,5 @@
 <?php
 
-function getCurrentPeriod () {
-	$file = fopen("ptec.txt", "r");
-	$content = fread($file, filesize("ptec.txt"));
-	
-	echo preg_replace("/\.*/", "", $content);
-}
-
-function getTarifs ($date) {
-	$mysqli = new mysqli("localhost", "edfdata", "edfdata", "EDFDATA");
-	if ($mysqli->connect_errno) {
-		echo "Echec lors de la connexion à MySQL : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-	}
-	
-	if ($date == "today") {
-		$dt = new DateTime();
-		$date = $dt->format('Y-m-d'); // Beurk! mais rapide...
-	}
-	
-	$row = getRawTarifs($date, $mysqli);
-	
-	return json_encode($row);
-}
-
 function getRawTarifs ($date, $cnx) {
 	$request = "select date, abonnement, hc as HC, hp as HP from tarifs where date <= '".$date." 23:59' order by date desc limit 1";
 	$results = $cnx->query($request);
@@ -153,23 +130,18 @@ function getDatasDeltaConsoPrixMois($nbYears) {
 
 	$datas = '{"cols": [{"id":"","label":"Mois","type":"string","pattern":""},{"id":"","label":"Montant","type":"number","pattern":""}],"rows": [';
 
-	$count = 0;
 	$previousValHc=0;
 	$previousValHp=0;
 	$values = [0,0,0,0,0,0,0,0,0,0,0,0];
 	while($row = $results->fetch_assoc()){
 		$tarifs = getRawTarifs($row['dateDMY'], $mysqli);
 		
-		if ($count >=1) {
-			$values[intval($row["Month"])] += ($row['hchc'] - $previousValHc) / 1000 * $tarifs["HC"] + ($row['hchp'] - $previousValHp) / 1000 * $tarifs["HP"];
-		}
+		$values[intval($row["Month"]-1)] += ($row['hchc'] - $previousValHc) / 1000 * $tarifs["HC"] + ($row['hchp'] - $previousValHp) / 1000 * $tarifs["HP"];
+		
 		$previousValHc = $row['hchc'];
 		$previousValHp = $row['hchp'];
-
-		$count ++;
 	}
 
-	
 	
 	$count = 0;
 	foreach ($values as $hc) {

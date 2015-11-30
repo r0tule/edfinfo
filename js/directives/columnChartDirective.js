@@ -48,7 +48,7 @@ edfinfoApp.directive('columnChart', function ($http) {
 					focusTarget : 'category',
 					lineWidth : '1',
 					isStacked: true,
-					legend : {position: 'top', maxLines: 2, alignment: 'center', textStyle: {color: '#333', fontSize: 16}},
+					legend : {position: 'none', maxLines: 2, alignment: 'center', textStyle: {color: '#333', fontSize: 16}},
 					vAxis : {textStyle : {color : '#555', fontSize : '16'}, gridlines : {color: '#CCC', count: 'auto'}, baselineColor : '#AAA', minValue : 0},
 					hAxis : {textStyle : {color : '#555'}, gridlines : {color: '#DDD'}, slantedText:true, slantedTextAngle:75}
 				};

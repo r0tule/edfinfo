@@ -26,9 +26,8 @@ edfinfoApp.controller('puissanceCtrl', function ($scope, $http, $element) {
 				endDate: $scope.dtFin.getDate() + "-" + ($scope.dtFin.getMonth()+1) + "-" + $scope.dtFin.getFullYear() + " " + $scope.endTime.getHours() + ":" + $scope.endTime.getMinutes()
 				}
 		}).success(function (result) {
-			$scope.graphData = result;
-			$scope.data = new google.visualization.DataTable($scope.graphData);	
-			dashboard.draw($scope.data);  
+			$scope.data = new google.visualization.DataTable(result);	
+			dashboard.draw($scope.data); 
 		});
 	}
   
@@ -39,8 +38,7 @@ edfinfoApp.controller('puissanceCtrl', function ($scope, $http, $element) {
 		method: "GET",
 		params: { puissance: "days", days: "1"}
 	}).success(function (result) {
-		$scope.graphData = result;
-		$scope.data = new google.visualization.DataTable($scope.graphData);	
+		$scope.data = new google.visualization.DataTable(result);	
 		dashboard.draw($scope.data);  
 	});
 	

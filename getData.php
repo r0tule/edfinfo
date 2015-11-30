@@ -22,11 +22,4 @@ if (isset($_GET["puissance"]) && $_GET["puissance"] == "range") {
 	echo getDatasPuissanceRange ($_GET["startDate"], $_GET['endDate']); 
 }
 
-if (isset($_GET["period"])) {
-	echo getCurrentPeriod();
-}
-
-if (isset($_GET["tarifs"])) {
-	echo getTarifs($_GET["date"]);
-}
  ?>
